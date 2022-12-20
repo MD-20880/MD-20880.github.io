@@ -1,0 +1,43 @@
+body {
+    align-content: center;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position-x: -850px;
+    background-image: url(https://pbs.twimg.com/media/FLzX7l4VkAQKYLh?format=jpg&name=large);
+    
+}
+
+.lyrics {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-right: 150px;
+    margin-left: 150px;
+    white-space: pre-line;
+    background-color: rgba(240, 248, 255, 0.521);
+   
+    
+}
+
+.lyrics .header{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    white-space: pre-line;
+}
+
+.lyrics .body{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    white-space: pre-line;
+}
+
+head {
+    align-content: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px;
+    margin-right: 40px;
+    margin-left: 40px;
+    text-align: center;
+
+}
