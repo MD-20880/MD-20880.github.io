@@ -100,12 +100,12 @@ Yume Shoka = Hexo</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeyonbf9j20zk0m8e81.jpg"></li>
           <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeuv80yoj20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclh0m9pdj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciusoyjnj219g0u0x56.jpg"></li>
           <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
         </ul>
       </div>
     </header>
@@ -152,24 +152,39 @@ Yume Shoka = Hexo</title>
     <p>笔者最近找工作中，拿到了一个关于后端服务设计的面试题目。虽然已经没有办法及时将结果交到面试官手中了，不过还是将这次学习过程记录下来。</p>
 <p>任务目标如下：<br><img data-src="/./%E5%90%8E%E7%AB%AF%E4%BB%BB%E5%8A%A1%E8%AE%B0%E5%BD%95-1/task.png" alt="Alt text"></p>
 <p>笔者在之前尝试过使用API，但是还没有过实现后端API的经历。经过在线查询，笔者选择使用golang+gin完成任务目标。</p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>由于之前没有做过编写后端接口的任务，笔者对整个任务流程没有基本的理解，需要一些例子来帮助我梳理完成任务所需要的所有步骤。</p>
+<ol>
+<li>API设计流程</li>
+<li>Web框架知识</li>
+<li>FFMPEG 使用</li>
+<li>如何编写单元测试</li>
+</ol>
+<p>笔者采用了官方文档循序渐进的例子+ChatGPT生成基本代码框架来完成项目的初期框架整理。尽管ChatGPT本身会胡说八道，但是对于创建低级例子这样的任务，ChatGPT出现问题的概率不大。有效地使用ChatGPT能提升我们学习效率。</p>
 <h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
 <li><p>API设计流程<br> 在设计API时，底层数据库的设计是重中之重，底层数据库设计决定了后续能够实现的功能多寡，以及功能如何实现。因此，在拿到业务内容初期就优先从数据库出发将业务逻辑设计好。而后再开始动手。</p>
 <p> 在任务开始阶段，急于去实现具体的接口功能会让后续的开发陷入不利的状态。可以借用各种思维导图工具等将业务逻辑梳理清楚。再根据项目需求决定内容是否需要冗余内容设计。</p>
+<p> 在使用思维导图进行设计的同时，要注意不要掉入过分细节坑里去。将整个任务作为一个整体进行推进，尽可能使得每个部分的细节程度相似。</p>
 </li>
 <li><p>在任务目标中，我们需要记录时间。已知POST难以直接将STRING Bind 到 time.Time 或 time.Duration.</p>
 </li>
-<li><p> 针对FFMPEG本身裁剪功能，我们需要将时间表示为 HH:MM:SS格式，<br> 问题：我们能否直接用String的形式存储时间戳，在录入时检查并在使用时直接使用结果。<br> 临时解决办法：将ID作为视频裁剪文件名并以此输出URL</p>
-<p> 解决办法 Golang Duration</p>
+<li><p> 针对FFMPEG本身裁剪功能，我们需要将时间表示为 HH:MM:SS格式。在进行开发时，笔者并不知道时间可以直接以字符串的形式存储，导致在各种int类型和time类型之间的转换中浪费了太多的时间。而后发现在FFMPEG中时间戳基本都是以时间字面值的形式直接传递给程序。在那之后也发现在没有对视频内容本身进行处理的情况下我们也不会对时间字面值进行任何操作。因此，使用String直接存储时间在这个场景下非常合理。</p>
+<p> 在以后遇到类似视频时间戳相关的任务内容时，尽可能使用String对时间戳进行保存，并使用标准库对时间内容进行调整。</p>
 </li>
 <li><p>ffmpeg 使用<br> 在ffmpeg中，想要裁剪一段视频，我们可以使用以下指令<br> <code>ffmpeg -i input.mp4 -ss 00:05:10 -to 00:15:30 -c:v copy -c:a copy output2.mp4</code><br> 其中 -i 指定输入<br> -ss 指定启动时间<br> -to 指定结束时间<br> -codex:v 指定如何处理视频轨道<br> -codex:a 指定如何处理音频轨道<br> 而ffmpeg的参数会依次作用在输入\输出视频上，所以参数的出现位置对结果也会有很大影响</p>
+<p> 以上这些参数也已经囊括了大多数平日会用到的视频操作参数了，再之后如果需要研究ffmpeg的话可以单独开一个Post去记录ffmepg相关的内容</p>
 </li>
 </ol>
-<h2 id="小问题们："><a href="#小问题们：" class="headerlink" title="小问题们："></a>小问题们：</h2><ol>
+<h2 id="一些可以随便记一笔的小问题："><a href="#一些可以随便记一笔的小问题：" class="headerlink" title="一些可以随便记一笔的小问题："></a>一些可以随便记一笔的小问题：</h2><ol>
 <li>任何地方字符串可以使用 fmt.Sprintf 进行 formatting</li>
 <li>在生成字符串这件事上可以看strconv库的用法</li>
 <li>exec库可以帮助执行命令行指令并获取结果</li>
 <li>gin.context 可以再多看看</li>
+<li>绑定内容时用c.BindJSON() 而不是 c.Bind()</li>
 </ol>
+<h2 id="数据库相关问题"><a href="#数据库相关问题" class="headerlink" title="数据库相关问题"></a>数据库相关问题</h2><p>使用SQL创建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `test`(</span><br><span class="line">	`id` <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">	`<span class="type">timestamp</span>` <span class="type">time</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;00:00:00&#x27;</span> COMMENT <span class="string">&#x27;测试时间&#x27;</span>,</span><br><span class="line">	<span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">)ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 COMMENT<span class="operator">=</span><span class="string">&#x27;测试&#x27;</span>; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>需要注意符号的使用 “&#96;”<br>需要设置PRIMARY KEY<br>最后的”COMMENT&#x3D;” 和 上面的 “COMMENT ‘xx’”不同 </p>
+<p>TIME型变量在Golang读取时会以HH:MM:SS格式用ASCII码输出</p>
 
   </div>
 
@@ -181,7 +196,7 @@ Yume Shoka = Hexo</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2023-07-17 16:40:48" itemprop="dateModified" datetime="2023-07-17T16:40:48+08:00">2023-07-17</time>
+    <time title="Modified: 2023-07-20 02:32:48" itemprop="dateModified" datetime="2023-07-20T02:32:48+08:00">2023-07-20</time>
   </span>
 </div>
 
@@ -236,7 +251,7 @@ Yume Shoka = Hexo</title>
     <div class="item left">
       
 
-  <a href="/2023/07/05/AE%E6%95%88%E6%9E%9C%E8%AE%B0%E5%BD%95/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicm07ih54j20zk0m84qp.jpg" title="AE效果记录">
+  <a href="/2023/07/05/AE%E6%95%88%E6%9E%9C%E8%AE%B0%E5%BD%95/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicmnywqgpj20zk0m8dwx.jpg" title="AE效果记录">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>AE效果记录</h3>
@@ -244,6 +259,14 @@ Yume Shoka = Hexo</title>
 
     </div>
     <div class="item right">
+      
+
+  <a href="/2023/07/18/RM%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclfb3vzhj20zk0m8wny.jpg" title="RM过程记录">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>RM过程记录</h3>
+  </a>
+
     </div>
 </div>
 
@@ -260,7 +283,7 @@ Yume Shoka = Hexo</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%97%AE%E9%A2%98%E4%BB%AC%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">小问题们：</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">前期准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%8F%AF%E4%BB%A5%E9%9A%8F%E4%BE%BF%E8%AE%B0%E4%B8%80%E7%AC%94%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">一些可以随便记一笔的小问题：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">数据库相关问题</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -275,7 +298,7 @@ Yume Shoka = Hexo</title>
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">6</span>
+        <span class="count">8</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -300,10 +323,12 @@ Yume Shoka = Hexo</title>
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/2023/07/05/AE%E6%95%88%E6%9E%9C%E8%AE%B0%E5%BD%95/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/2023/07/18/RM%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -327,15 +352,6 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/07/04/hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
     <span><a href="/2023/07/04/%E3%80%90%E8%8A%99%E8%8E%89%E8%8E%B2-%E9%9D%99%E6%AD%A2%E7%B3%BBMAD-%E6%83%B3%E4%B8%8D%E6%83%B3%E7%9C%8B%E8%8A%B1%E6%B5%B7%E7%9B%9B%E5%BC%80%E3%80%91%E6%8B%89%E7%89%87%E8%A7%A3%E6%9E%90/" title="【芙莉莲_静止系MAD_想不想看花海盛开】拉片解析">【芙莉莲_静止系MAD_想不想看花海盛开】拉片解析</a></span>
   </li>
 
@@ -345,7 +361,7 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/07/04/%E5%88%86%E6%9E%90%E5%8F%AF%E7%94%A8%E5%90%8D%E8%AF%8D%E5%8F%8A%E9%87%8A%E4%B9%89/" title="分析可用名词及释义">分析可用名词及释义</a></span>
+    <span><a href="/2023/07/18/%E9%9A%8F%E8%AE%B0-1/" title="随记-1">随记-1</a></span>
   </li>
 
       
@@ -354,7 +370,7 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/07/05/%E5%BD%B1%E8%A7%86%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%81%AF%E5%85%89%E7%9A%84%E4%BD%9C%E7%94%A8/" title="影视语言中灯光的作用">影视语言中灯光的作用</a></span>
+    <span><a href="/2023/07/04/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
       
@@ -372,7 +388,34 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
+    <span><a href="/2023/07/18/RM%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" title="RM过程记录">RM过程记录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/07/04/%E5%88%86%E6%9E%90%E5%8F%AF%E7%94%A8%E5%90%8D%E8%AF%8D%E5%8F%8A%E9%87%8A%E4%B9%89/" title="分析可用名词及释义">分析可用名词及释义</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
     <span><a href="/2023/07/13/%E5%90%8E%E7%AB%AF%E4%BB%BB%E5%8A%A1%E8%AE%B0%E5%BD%95-1/" title="后端任务记录-1">后端任务记录-1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/07/05/%E5%BD%B1%E8%A7%86%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%81%AF%E5%85%89%E7%9A%84%E4%BD%9C%E7%94%A8/" title="影视语言中灯光的作用">影视语言中灯光的作用</a></span>
   </li>
 
   </ul>
