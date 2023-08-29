@@ -67,7 +67,7 @@ Yume Shoka = Hexo</title>
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2023-07-18T14:42:30+08:00">2023-07-18</time>
+    <time itemprop="dateCreated datePublished" datetime="2023-07-18T14:42:30+00:00">2023-07-18</time>
   </span>
 </div>
 
@@ -100,12 +100,12 @@ Yume Shoka = Hexo</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexe4oykj20zk0m87ji.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclj61ylzj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicliierfjj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipevuctzzj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
         </ul>
       </div>
     </header>
@@ -149,18 +149,30 @@ Yume Shoka = Hexo</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <p>近期笔者在ROBOMASTER Illinois队伍以电控组成员的身份参与比赛。在这里记录下在初次进入队伍时笔者曾出现过或大或小的问题，希望能给后来人提供一些帮助。</p>
-<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ol>
-<li>烧录程序使用的是SWD接口</li>
+    <p>近期笔者在 ROBOMASTER Illinois 队伍以电控组成员的身份参与比赛。在这里记录下在初次进入队伍时笔者曾出现过或大或小的问题，希望能给后来人提供一些帮助。</p>
+<h2 id="问题记录"><a class="markdownIt-Anchor" href="#问题记录">#</a> 问题记录</h2>
+<ol>
+<li>烧录程序使用的是 SWD 接口</li>
 </ol>
-<h3 id="CAN编程"><a href="#CAN编程" class="headerlink" title="CAN编程"></a>CAN编程</h3><ol>
-<li>如何检测CAN线输出内容</li>
+<h3 id="can编程"><a class="markdownIt-Anchor" href="#can编程">#</a> CAN 编程</h3>
+<ol>
+<li>如何检测 CAN 线输出内容</li>
 </ol>
-<h3 id="烧录程序流程"><a href="#烧录程序流程" class="headerlink" title="烧录程序流程"></a>烧录程序流程</h3><p>iRMIllinoi 使用OpenOCD进行程序的烧录和调试。在开始烧录程序前，请确保已经根据 __ 完成了自己电脑配置</p>
-<h3 id="文档架构"><a href="#文档架构" class="headerlink" title="文档架构"></a>文档架构</h3><h3 id="整车结构"><a href="#整车结构" class="headerlink" title="整车结构"></a>整车结构</h3><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="如何配置GPIO接口"><a href="#如何配置GPIO接口" class="headerlink" title="如何配置GPIO接口"></a>如何配置GPIO接口</h3><p>对于STM32开发版，官方提供了STM32CUBEMX软件配置开发版硬件接口输入输出。<br>可以说，几乎每一个针脚都可以根据你的需求来进行自定义配置。<br>【图片-CUBEMX界面】</p>
-<p>通过查询开发版的官方文档，我们可以找到开发板每个暴露针脚对应的STM32针脚编号，并通过CUBEMX界面对针脚进行配置和命名。<br>【图片-官方文档】</p>
+<h3 id="烧录程序流程"><a class="markdownIt-Anchor" href="#烧录程序流程">#</a> 烧录程序流程</h3>
+<p>iRMIllinoi 使用 OpenOCD 进行程序的烧录和调试。在开始烧录程序前，请确保已经根据 __ 完成了自己电脑配置</p>
+<h3 id="文档架构"><a class="markdownIt-Anchor" href="#文档架构">#</a> 文档架构</h3>
+<h3 id="整车结构"><a class="markdownIt-Anchor" href="#整车结构">#</a> 整车结构</h3>
+<h3 id=""><a class="markdownIt-Anchor" href="#">#</a> </h3>
+<h3 id="如何配置gpio接口"><a class="markdownIt-Anchor" href="#如何配置gpio接口">#</a> 如何配置 GPIO 接口</h3>
+<p>对于 STM32 开发版，官方提供了 STM32CUBEMX 软件配置开发版硬件接口输入输出。<br>
+可以说，几乎每一个针脚都可以根据你的需求来进行自定义配置。<br>
+【图片 - CUBEMX 界面】</p>
+<p>通过查询开发版的官方文档，我们可以找到开发板每个暴露针脚对应的 STM32 针脚编号，并通过 CUBEMX 界面对针脚进行配置和命名。<br>
+【图片 - 官方文档】</p>
 <p>最后，生成代码，即可基于生成代码进行开发</p>
-<h3 id="电机调试流程"><a href="#电机调试流程" class="headerlink" title="电机调试流程"></a>电机调试流程</h3><p>当没有接触过电机时，优先读说明书！<br>在最一开始，你很有可能并不了解电机说明书中所包含的所有参数。但是阅读过一遍说明书以后总能提升你对这个电机的了解。</p>
+<h3 id="电机调试流程"><a class="markdownIt-Anchor" href="#电机调试流程">#</a> 电机调试流程</h3>
+<p>当没有接触过电机时，优先读说明书！<br>
+在最一开始，你很有可能并不了解电机说明书中所包含的所有参数。但是阅读过一遍说明书以后总能提升你对这个电机的了解。</p>
 <p>如果别人已经写好了驱动，你的任务只是调试电机参数的话，以最小的参数开始对电机进行调试。通常来说，哪怕看起来体积很小的电机，启动的时候也能吓你一跳。</p>
 
   </div>
@@ -173,7 +185,7 @@ Yume Shoka = Hexo</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2023-08-01 01:45:14" itemprop="dateModified" datetime="2023-08-01T01:45:14+08:00">2023-08-01</time>
+    <time title="Modified: 2023-08-17 16:28:26" itemprop="dateModified" datetime="2023-08-17T16:28:26+00:00">2023-08-17</time>
   </span>
 </div>
 
@@ -228,7 +240,7 @@ Yume Shoka = Hexo</title>
     <div class="item left">
       
 
-  <a href="/2023/07/13/%E5%90%8E%E7%AB%AF%E4%BB%BB%E5%8A%A1%E8%AE%B0%E5%BD%95-1/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitcxhpij20zk0m8hdt.jpg" title="后端任务记录-1">
+  <a href="/2023/07/13/%E5%90%8E%E7%AB%AF%E4%BB%BB%E5%8A%A1%E8%AE%B0%E5%BD%95-1/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicli3sbvtj20zk0m8x6p.jpg" title="后端任务记录-1">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>后端任务记录-1</h3>
@@ -238,7 +250,7 @@ Yume Shoka = Hexo</title>
     <div class="item right">
       
 
-  <a href="/2023/07/18/%E9%9A%8F%E8%AE%B0-1/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclg5ms2rj20zk0m8u0x.jpg" title="随记-1">
+  <a href="/2023/07/18/%E9%9A%8F%E8%AE%B0-1/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclil3m4ej20zk0m8tn8.jpg" title="随记-1">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>随记-1</h3>
@@ -260,7 +272,7 @@ Yume Shoka = Hexo</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAN%E7%BC%96%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">CAN编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%A7%E5%BD%95%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">烧录程序流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">文档架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E8%BD%A6%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">整车结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.5.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEGPIO%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.6.</span> <span class="toc-text">如何配置GPIO接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E6%9C%BA%E8%B0%83%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-number">1.7.</span> <span class="toc-text">电机调试流程</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text"> 问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#can%E7%BC%96%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> CAN 编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%A7%E5%BD%95%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 烧录程序流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text"> 文档架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E8%BD%A6%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text"> 整车结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.5.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEgpio%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.6.</span> <span class="toc-text"> 如何配置 GPIO 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E6%9C%BA%E8%B0%83%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-number">1.7.</span> <span class="toc-text"> 电机调试流程</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -275,7 +287,7 @@ Yume Shoka = Hexo</title>
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">9</span>
+        <span class="count">11</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -329,7 +341,16 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/07/13/%E5%90%8E%E7%AB%AF%E4%BB%BB%E5%8A%A1%E8%AE%B0%E5%BD%95-1/" title="后端任务记录-1">后端任务记录-1</a></span>
+    <span><a href="/2023/08/29/Ubuntu%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/" title="Ubuntu折腾记录">Ubuntu折腾记录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/07/21/%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/" title="折腾记录">折腾记录</a></span>
   </li>
 
       
@@ -347,7 +368,7 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/07/05/%E5%BD%B1%E8%A7%86%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%81%AF%E5%85%89%E7%9A%84%E4%BD%9C%E7%94%A8/" title="影视语言中灯光的作用">影视语言中灯光的作用</a></span>
+    <span><a href="/2023/08/29/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
       
@@ -356,16 +377,7 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/07/04/hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/07/18/RM%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" title="RM过程记录">RM过程记录</a></span>
+    <span><a href="/2023/08/18/Ideas/" title="Ideas">Ideas</a></span>
   </li>
 
       
@@ -383,15 +395,6 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/07/18/%E9%9A%8F%E8%AE%B0-1/" title="随记-1">随记-1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
     <span><a href="/2023/07/05/AE%E6%95%88%E6%9E%9C%E8%AE%B0%E5%BD%95/" title="AE效果记录">AE效果记录</a></span>
   </li>
 
@@ -401,7 +404,25 @@ Yume Shoka = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/07/21/%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/" title="折腾记录">折腾记录</a></span>
+    <span><a href="/2023/07/18/%E9%9A%8F%E8%AE%B0-1/" title="随记-1">随记-1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/07/05/%E5%BD%B1%E8%A7%86%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%81%AF%E5%85%89%E7%9A%84%E4%BD%9C%E7%94%A8/" title="影视语言中灯光的作用">影视语言中灯光的作用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/07/18/RM%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" title="RM过程记录">RM过程记录</a></span>
   </li>
 
   </ul>
