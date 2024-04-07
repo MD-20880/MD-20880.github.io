@@ -1,0 +1,17 @@
+.personal-intro {
+  text-align: center;
+}
+.personal-intro {
+  padding: 2em;
+  border: 1px solid #000;
+}
+.personal-avatar {
+  border-radius: 50%;
+  border: 1px solid #000;
+  margin: 0 auto;
+  display: block;
+  width: 10em;
+  height: 10em;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
